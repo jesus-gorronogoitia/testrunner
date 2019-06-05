@@ -52,7 +52,10 @@ public class JUnit5TestResult extends TestResultImpl implements TestExecutionLis
     @Override
     public void executionStarted(TestIdentifier testIdentifier) {
         if (testIdentifier.isTest()) {
-            this.getRunningTests().add(this.toString.apply(testIdentifier));
+            //Fix to avoid adding a null testName
+            String testName = this.toString.apply(testIdentifier);
+            System.out.println ("Execution started for test: " + testName);
+            this.getRunningTests().add(testName);
         }
     }
 
